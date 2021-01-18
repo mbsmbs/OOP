@@ -6,7 +6,7 @@
 - Java는 기본 자료형을 제외하면 모두 포인터다.
 
 ```java
-access<odifier dataType VarName;                          // 멤버 변수
+accessModifier dataType VarName;                          // 멤버 변수
  
 accessModifier returnType funcName(매개변수 목록) {...}    // 멤버 함수
 
