@@ -59,3 +59,5 @@ Human adam = new Human();                                 // 개체 생성
 ## getter/setter
 - private 멤버 변수의 값을 읽어 올때 : public getter
 - private 멤버 변수의 값을 바꿀 때 : public setter
+
+
