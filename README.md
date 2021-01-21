@@ -11,4 +11,6 @@ Study Object Oriented Programming
 
 # [5. Static & Singleton](https://github.com/mbsmbs/OOP/blob/master/Static&Singleton/Static&Singleton.md)
 
-# [6. 내포 클래스]()
+# [6. 내포 클래스](https://github.com/mbsmbs/OOP/blob/master/%EB%82%B4%ED%8F%AC%ED%81%B4%EB%9E%98%EC%8A%A4/%EB%82%B4%ED%8F%AC%ED%81%B4%EB%9E%98%EC%8A%A4.md)
+
+#[7. 상속]()
