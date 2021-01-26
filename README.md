@@ -14,3 +14,5 @@ Study Object Oriented Programming
 # [6. 내포 클래스](https://github.com/mbsmbs/OOP/blob/master/%EB%82%B4%ED%8F%AC%ED%81%B4%EB%9E%98%EC%8A%A4/%EB%82%B4%ED%8F%AC%ED%81%B4%EB%9E%98%EC%8A%A4.md)
 
 # [7. 상속](https://github.com/mbsmbs/OOP/blob/master/%EC%83%81%EC%86%8D/%EC%83%81%EC%86%8D.md)
+
+# [8. 상속을 이용한 개체 모델링]()
