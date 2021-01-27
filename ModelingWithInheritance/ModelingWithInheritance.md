@@ -140,3 +140,61 @@ public void addSeconds(short seconds)
 |+getMinutes(): byte|
 |+getSeconds(): byte|
 |+addSeconds(short)|
+
+```java
+public class Clock
+{
+  private int seconds;
+  
+  public byte getHours()
+  {
+    int hours = this.seconds / 60 / 60;
+    
+    return hours == 0 ? 12 : (byte) hours;
+  }
+  
+  public byte getMinutes()
+  {
+    return (byte) (this.seconds / 60 % 60);
+  }
+  
+  public byte getSeconds()
+  {
+    return (byte) (this.seconds % 60);
+  }
+  
+  public void addSeconds(short seconds)
+  {
+    final int HALF_DAY_IN_SECONDS = 60 * 60 * 12;
+
+    int value = this.seconds + seconds;
+    while(value < 0)
+    {
+      value += HALF_DAY_IN_SECONDS;
+    }
+
+    this.seconds = value % HALF_DAY_IN_SECONDS;
+  }
+}
+```
+
+### 시침, 분침, 초침의 각도를 추가 + 알파
+|Clock|
+|---|
+|-hours: byte = 12|
+|-minutes: byte = 0|
+|-seconds: byte = 0|
+||
+|+Clock()|
+|+getHours(): byte|
+|+getMinutes(): byte|
+|+getSeconds(): byte|
+|+addSeconds(short)|
+|+getSecondHandAngle(): short|
+|+getMinuteHandAngle(): short|
+|+getHourHandAngle(): short|
+|+tick()|
+|+mount()|
+
+
+## 디지털 벽시계 추가
