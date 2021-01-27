@@ -2,6 +2,7 @@
 
 ## 모델링 대상 : 벽시계
 - 기본 상태와 메서드
+
 |Clock|
 |---|
 |-hours: byte = 12|
@@ -90,6 +91,7 @@ public void setMinutes(byte minutes)
 ### 시간 입력을 개선한  Clock 클래스
 - 모든 setter 제거
 - addSeconds(short) : 시간을 초로 환산해서 입력
+
 |Clock|
 |---|
 |-hours: byte = 12|
