@@ -230,7 +230,6 @@ public class Clock
 
 |AnalogClock|
 |---|
-|-seconds: int = 0|
 ||
 |+AnalogClock()|
 |+addSeconds(short)|
@@ -260,3 +259,174 @@ protected static final int HALF_DAY_IN_SECONDS = 60 * 60 * 12;
 ### 클래스 다이어그램에서 # : protected 의미
 
 ### 클래스 다이어그램에서 상수는 표시하지 않는다.
+```java
+public class Clock
+{
+  protected static final int HALF_DAY_IN_SECONDS = 60 * 60 * 12;
+  protected int seconds;
+  
+  public byte getHours()
+  {
+    int hours = this.seconds / 60 / 60;
+    
+    return hours == 0 ? 12 : (byte) hours;
+  }
+  
+  public byte getMinutes()
+  {
+    return (byte) (this.seconds / 60 % 60);
+  }
+  
+  public byte getSeconds()
+  {
+    return (byte) (this.seconds % 60);
+  }
+  
+  public void tick()
+  {
+    this seconds = (this.seconds + 1) % HALF_DAY_IN_SECONDS;
+  }
+  
+  public void mount()
+  {
+    ...
+  }
+}
+```
+```java
+public class AnalogClock extends Clock
+{
+  public short gerSecondHandAngle()
+  {
+    return (short) (getSeconds * 6);
+  }
+  
+  public short getMinuteHandAngle()
+  {
+    return (short) (getMinutes() * 6);
+  }
+  
+  public short getHourHandAngle()
+  {
+    final int ANGLE_PER_HOUR = 360 / 12;
+    
+    int hours = getHours() % 12;
+    return (short) (hours * ANGLE_PER_HOUR + getMinutes() * ANGLE_PER_HOUR / 60);
+  }
+  
+  public void addSeconds(int seconds)
+  {
+    int value = this.seconds;
+    while(value < 0)
+    {
+      value += HALF_DAY_IN_SECONDS;
+    }
+    
+    this.seconds = value % HALF_DAY_IN_SECONDS;
+  }
+}
+```
+
+### 디지털 벽시계 전용 기능
+1. 오전/오후 구분하기
+- 내부적으로 24시간을 사용하되 아날로그 출력 방법을 변경
+  - 12 ~ 24시간 범위에서는 12를 뺌
+  - 12 ~ 24시간 범위내에 있으면 PM, 그 외에는 AM
+
+|Clock|
+|---|
+|#seconds: int = 0|
+||
+|+Clock()|
+|+getHours(): byte|
+|+getMinutes(): byte|
+|+getSeconds(): byte|
+|+tick()|
+|+mount()|
+
+|AnalogClock|
+|---|
+||
+|+AnalogClock()|
+|+addSeconds(short)|
+|+getSecondHandAngle(): short|
+|+getMinuteHandAngle(): short|
+|+getHourHandAngle(): short|
+
+|DigitalClock|
+|---|
+|+DigitalClock()|
+|+isBeforeMidday(): boolean|
+
+AnalogClock, DigitalClock -> Clock
+
+```java
+public class Clock
+{
+  protected static final int DAY_IN_SECONDS = 60 * 60 * 12;
+  protected int seconds;
+  
+  public byte getHours()
+  {
+    int hours = this.seconds / 60 / 60;
+    hours = hours % 12;
+    
+    return hours == 0 ? 12 : (byte) hours;
+  }
+  
+  public byte getMinutes()
+  {
+    return (byte) (this.seconds / 60 % 60);
+  }
+  
+  public byte getSeconds()
+  {
+    return (byte) (this.seconds % 60);
+  }
+  
+  public void tick()
+  {
+    this seconds = (this.seconds + 1) % DAY_IN_SECONDS;
+  }
+  
+  public void mount()
+  {
+    ...
+  }
+}
+```
+```java
+public class AnalogClock extends Clock
+{
+  ...
+  
+  public void addSeconds(int seconds)
+  {
+    int value = this.seconds;
+    while(value < 0)
+    {
+      value += HDAY_IN_SECONDS;
+    }
+    
+    this.seconds = value % DAY_IN_SECONDS;
+  }
+}
+```
+
+```java
+public class DigitalClock extends Clock
+{
+  public boolean isBeforeMidday()
+  {
+    return (super.seconds / (DAY_IN_SECONDS / 2) == 0);
+  }
+}
+```
+
+- 자식 클래스를 추가함에 따라 부모 클래스가 변경될 수도 있다.
+
+
+2. 시간 맞추는 방식
+
+
+3. 7 세그먼트 디스플레이를 이용한 시간 출력
