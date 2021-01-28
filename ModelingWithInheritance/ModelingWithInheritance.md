@@ -198,3 +198,65 @@ public class Clock
 
 
 ## 디지털 벽시계 추가
+- 두 시계의 공통점은 부모 클래스로 만들고 차이점은 자식 클래스로 분리하면 된다.
+
+|Clock|
+|---|
+|-seconds: int = 0|
+||
+|+Clock()|
+|+getHours(): byte|
+|+getMinutes(): byte|
+|+getSeconds(): byte|
+|+addSeconds(short)|
+|+getSecondHandAngle(): short|
+|+getMinuteHandAngle(): short|
+|+getHourHandAngle(): short|
+|+tick()|
+|+mount()|
+
+- 분리
+
+|Clock|
+|---|
+|-seconds: int = 0|
+||
+|+Clock()|
+|+getHours(): byte|
+|+getMinutes(): byte|
+|+getSeconds(): byte|
+|+tick()|
+|+mount()|
+
+|AnalogClock|
+|---|
+|-seconds: int = 0|
+||
+|+AnalogClock()|
+|+addSeconds(short)|
+|+getSecondHandAngle(): short|
+|+getMinuteHandAngle(): short|
+|+getHourHandAngle(): short|
+
+AnalogClock extends Clock
+
+### tick() 수정
+```java
+public void tick()
+{
+  final int HALF_DAY_IN_SECONDS = 60 * 60 * 12;
+  this.seconds = (this.seconds + 1) % HALF_DAY_IN_SECONDS;
+}
+```
+
+### 부모 클래스에 있는 private 멤버 변수 -> protected로 변경
+
+### final변수 메서드 밖에 정의해서 중복을 피하자
+```java
+// 부모 클래스에
+protected static final int HALF_DAY_IN_SECONDS = 60 * 60 * 12;
+```
+
+### 클래스 다이어그램에서 # : protected 의미
+
+### 클래스 다이어그램에서 상수는 표시하지 않는다.
