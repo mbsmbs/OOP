@@ -15,4 +15,4 @@ Study Object Oriented Programming
 
 # [7. 상속](https://github.com/mbsmbs/OOP/blob/master/%EC%83%81%EC%86%8D/%EC%83%81%EC%86%8D.md)
 
-# [8. 상속을 이용한 개체 모델링]()
+# [8. 상속을 이용한 개체 모델링](https://github.com/mbsmbs/OOP/blob/master/ModelingWithInheritance/ModelingWithInheritance.md)
