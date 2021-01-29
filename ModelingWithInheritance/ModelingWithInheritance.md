@@ -437,3 +437,10 @@ public class DigitalClock extends Clock
 |+setTime(byte, byte, byte, boolean)|
 
 3. 7 세그먼트 디스플레이를 이용한 시간 출력
+.
+.
+.
+
+
+# 상속은 1 ~ 2단계만 상속하는게 보통
+# 깊어질수록 추상화 능력이 필요
