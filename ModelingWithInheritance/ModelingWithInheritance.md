@@ -428,5 +428,12 @@ public class DigitalClock extends Clock
 
 2. 시간 맞추는 방식
 
+|DigitalClock|
+|---|
+|+setIsBeforeMidday(boolean)|
+|+setHour(byte)|
+|+setMinutes(byte)|
+|+setSeconds(byte)|
+|+setTime(byte, byte, byte, boolean)|
 
 3. 7 세그먼트 디스플레이를 이용한 시간 출력
